@@ -84,7 +84,7 @@ export default function LocationSearch({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setOpen(true)}
-          placeholder="Escribe una ciudad o lugar (ej. Roma)"
+          placeholder="Escribe una ciudad o lugar (ej. Oviedo)"
           className="w-full rounded-xl border-rose-200 bg-white/80 py-2 pl-9 pr-9 shadow-sm focus:border-rose-400 focus:ring-rose-400"
         />
         {loading && (

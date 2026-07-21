@@ -158,7 +158,7 @@ export default function MemoryForm() {
         <input
           {...register("title")}
           className="mt-1.5 w-full rounded-xl border-rose-200 bg-white/80 shadow-sm focus:border-rose-400 focus:ring-rose-400"
-          placeholder="Nuestro primer viaje a Italia"
+          placeholder="Nuestra escapada a Oviedo"
         />
         {errors.title && (
           <p className="mt-1 text-xs text-red-500">{errors.title.message}</p>

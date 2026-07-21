@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import PhotoMarker from "@/components/map/PhotoMarker";
 import type { Memory } from "@/lib/types";
 
-const DEFAULT_CENTER: [number, number] = [41.9028, 12.4964]; // Roma
+const DEFAULT_CENTER: [number, number] = [40.4168, -3.7038]; // Madrid
 
 export default function MapView({ memories }: { memories: Memory[] }) {
   const center: [number, number] =

@@ -53,7 +53,7 @@ export default function LocationPicker({
   lng: number | null;
   onChange: (lat: number, lng: number) => void;
 }) {
-  const center: [number, number] = lat && lng ? [lat, lng] : [41.9028, 12.4964];
+  const center: [number, number] = lat && lng ? [lat, lng] : [40.4168, -3.7038];
 
   return (
     <div className="overflow-hidden rounded-2xl ring-1 ring-rose-200">
