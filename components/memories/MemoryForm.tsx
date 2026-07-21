@@ -37,6 +37,7 @@ export default function MemoryForm() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [dragging, setDragging] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [isMilestone, setIsMilestone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const photosRef = useRef<Photo[]>([]);
@@ -137,6 +138,13 @@ export default function MemoryForm() {
             position: i,
           });
         if (photoError) throw photoError;
+      }
+
+      if (isMilestone) {
+        const { error: milestoneError } = await supabase
+          .from("milestones")
+          .insert({ title: values.title, date: values.date });
+        if (milestoneError) throw milestoneError;
       }
 
       router.push("/timeline");
@@ -300,6 +308,25 @@ export default function MemoryForm() {
           placeholder="Qué recordáis de este momento..."
         />
       </div>
+
+      {/* 6. Marcar como hito */}
+      <label className="flex cursor-pointer items-start gap-3 rounded-2xl bg-rose-50/70 p-4 ring-1 ring-rose-100">
+        <input
+          type="checkbox"
+          checked={isMilestone}
+          onChange={(e) => setIsMilestone(e.target.checked)}
+          className="mt-0.5 h-5 w-5 rounded border-rose-300 text-rose-500 focus:ring-rose-400"
+        />
+        <span className="text-sm">
+          <span className="font-semibold text-rose-500">
+            Marcar como hito importante 💗
+          </span>
+          <span className="mt-0.5 block text-rose-400/80">
+            Aparecerá en la portada con un contador de días (aniversario,
+            primera cita...).
+          </span>
+        </span>
+      </label>
 
       {error && <p className="text-sm text-red-500">{error}</p>}
 
