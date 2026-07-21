@@ -1,7 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import L from "leaflet";
 
 const markerIcon = L.icon({
@@ -27,6 +34,16 @@ function ClickHandler({
   return null;
 }
 
+function Recenter({ lat, lng }: { lat: number | null; lng: number | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (lat != null && lng != null) {
+      map.flyTo([lat, lng], Math.max(map.getZoom(), 12), { duration: 0.8 });
+    }
+  }, [lat, lng, map]);
+  return null;
+}
+
 export default function LocationPicker({
   lat,
   lng,
@@ -39,10 +56,10 @@ export default function LocationPicker({
   const center: [number, number] = lat && lng ? [lat, lng] : [41.9028, 12.4964];
 
   return (
-    <div className="overflow-hidden rounded-xl ring-1 ring-gray-200">
+    <div className="overflow-hidden rounded-2xl ring-1 ring-rose-200">
       <MapContainer
         center={center}
-        zoom={lat && lng ? 10 : 4}
+        zoom={lat && lng ? 12 : 4}
         scrollWheelZoom
         className="h-64 w-full"
       >
@@ -51,6 +68,7 @@ export default function LocationPicker({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ClickHandler onPick={onChange} />
+        <Recenter lat={lat} lng={lng} />
         {lat && lng && <Marker position={[lat, lng]} icon={markerIcon} />}
       </MapContainer>
     </div>
