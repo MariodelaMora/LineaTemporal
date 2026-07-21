@@ -24,21 +24,21 @@ export default function TimelineCard({
       }`}
     >
       <div className="w-full sm:w-[46%]">
-        <div className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5">
+        <div className="overflow-hidden rounded-3xl bg-white/80 shadow-lg shadow-rose-100 ring-1 ring-rose-100 backdrop-blur transition-transform hover:-translate-y-1">
           <PhotoCarousel photos={memory.photos} alt={memory.title} />
           <div className="space-y-2 p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-rose-400">
+            <p className="text-xs font-medium uppercase tracking-widest text-rose-300">
               {formatDate(memory.date)}
             </p>
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="font-display text-2xl text-rose-500">
               {memory.title}
             </h3>
-            <p className="flex items-center gap-1 text-sm text-gray-500">
+            <p className="flex items-center gap-1 text-sm text-rose-400/80">
               <MapPin size={14} className="text-rose-400" />
               {memory.location_name}
             </p>
             {memory.description && (
-              <p className="text-sm leading-relaxed text-gray-600">
+              <p className="text-sm leading-relaxed text-rose-400/90">
                 {memory.description}
               </p>
             )}

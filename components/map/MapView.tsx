@@ -16,7 +16,7 @@ export default function MapView({ memories }: { memories: Memory[] }) {
       center={center}
       zoom={5}
       scrollWheelZoom
-      className="h-[70vh] w-full rounded-2xl"
+      className="h-[70vh] w-full rounded-3xl shadow-lg shadow-rose-100 ring-1 ring-rose-100"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

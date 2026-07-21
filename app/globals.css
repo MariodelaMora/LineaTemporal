@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff5f8;
+  --foreground: #5b4149;
 }
 
 @theme inline {
@@ -10,29 +10,38 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-display);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #ffe0ec 0%, transparent 55%),
+    radial-gradient(1000px 500px at 100% 0%, #f4e3ff 0%, transparent 50%),
+    linear-gradient(180deg, #fff5f8 0%, #fdeef4 40%, #fbe9f2 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
+.font-display {
+  font-family: var(--font-display), "Segoe UI", cursive;
+}
+
+/* Marcadores de foto en el mapa */
 .photo-marker-inner {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 9999px;
   overflow: hidden;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  background: white;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(244, 114, 182, 0.45);
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.photo-marker-inner:hover {
+  transform: scale(1.08);
 }
 
 .photo-marker-inner img {
@@ -42,11 +51,31 @@ body {
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   overflow: hidden;
   padding: 0;
+  box-shadow: 0 10px 30px rgba(244, 114, 182, 0.3);
 }
 
 .leaflet-popup-content {
   margin: 0;
+}
+
+.leaflet-container {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* Corazón latiendo suave */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.6s ease-in-out infinite;
 }

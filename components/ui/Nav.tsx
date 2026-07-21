@@ -15,10 +15,13 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rose-100 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-rose-100/70 bg-white/60 backdrop-blur-md">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-rose-500">
-          <Heart size={20} className="fill-rose-400 text-rose-400" />
+        <Link
+          href="/"
+          className="font-display flex items-center gap-2 text-2xl text-rose-500"
+        >
+          <Heart size={20} className="animate-heartbeat fill-rose-400 text-rose-400" />
           Nuestros recuerdos
         </Link>
         <div className="flex gap-1 sm:gap-2">
@@ -28,10 +31,10 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
                   active
-                    ? "bg-rose-500 text-white"
-                    : "text-gray-500 hover:bg-rose-50 hover:text-rose-500"
+                    ? "bg-gradient-to-r from-rose-400 to-pink-400 text-white shadow-sm shadow-rose-200"
+                    : "text-rose-400/80 hover:bg-rose-100/60 hover:text-rose-500"
                 }`}
               >
                 <Icon size={15} />
