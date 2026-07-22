@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Heart, Map, Plus, Clock } from "lucide-react";
+import { Heart, Map, Plus, Clock, LogOut } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 const links = [
   { href: "/", label: "Inicio", icon: Heart },
@@ -42,6 +43,15 @@ export default function Nav() {
               </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={() => createClient().auth.signOut()}
+            aria-label="Salir"
+            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-rose-400/80 transition-all hover:bg-rose-100/60 hover:text-rose-500"
+          >
+            <LogOut size={15} />
+            <span className="hidden sm:inline">Salir</span>
+          </button>
         </div>
       </nav>
     </header>
