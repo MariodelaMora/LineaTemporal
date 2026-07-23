@@ -3,16 +3,20 @@ import type { Memory } from "@/lib/types";
 
 export default function MemoryPopup({ memory }: { memory: Memory }) {
   return (
-    <div className="w-56">
-      {/* Solo la primera foto: el popup es una miniatura, la galería está en el timeline */}
-      {memory.photos[0] && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={memory.photos[0].url}
-          alt={memory.title}
-          className="h-40 w-full rounded-xl object-cover"
-        />
-      )}
+    <div className="w-60">
+      {/* Tira deslizable: ancho fijo por foto (w-60=240px) para no depender de
+          la medida del popup de Leaflet, que dejaba la 2ª foto en blanco */}
+      <div className="flex snap-x snap-mandatory overflow-x-auto rounded-xl">
+        {memory.photos.map((photo) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={photo.id}
+            src={photo.url}
+            alt={memory.title}
+            className="h-40 w-60 shrink-0 snap-center object-cover"
+          />
+        ))}
+      </div>
       <div className="space-y-1 pt-2">
         <p className="text-[11px] font-medium uppercase tracking-wide text-rose-400">
           {formatDate(memory.date)}
