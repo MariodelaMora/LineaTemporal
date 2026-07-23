@@ -8,7 +8,7 @@ import type { Memory } from "@/lib/types";
 function createPhotoIcon(url: string) {
   return L.divIcon({
     className: "photo-marker",
-    html: `<div class="photo-marker-inner"><img src="${url}" alt="" /></div>`,
+    html: `<div class="photo-marker-inner"><img src="${url}" alt="" style="width:100%;height:100%;object-fit:cover;display:block" /></div>`,
     iconSize: [56, 56],
     iconAnchor: [28, 28],
     popupAnchor: [0, -28],
