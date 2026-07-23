@@ -4,18 +4,15 @@ import type { Memory } from "@/lib/types";
 export default function MemoryPopup({ memory }: { memory: Memory }) {
   return (
     <div className="w-56">
-      {/* Tira con scroll-snap: nativa, sin el bug de medida de embla en el popup */}
-      <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto rounded-xl">
-        {memory.photos.map((photo) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={photo.id}
-            src={photo.url}
-            alt={memory.title}
-            className="h-40 w-full shrink-0 snap-center object-cover"
-          />
-        ))}
-      </div>
+      {/* Solo la primera foto: el popup es una miniatura, la galería está en el timeline */}
+      {memory.photos[0] && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={memory.photos[0].url}
+          alt={memory.title}
+          className="h-40 w-full rounded-xl object-cover"
+        />
+      )}
       <div className="space-y-1 pt-2">
         <p className="text-[11px] font-medium uppercase tracking-wide text-rose-400">
           {formatDate(memory.date)}
